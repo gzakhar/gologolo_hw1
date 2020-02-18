@@ -1,4 +1,4 @@
-import {AppsterCallback, AppsterGUIId, AppsterHTML} from './AppsterConstants.js'
+import { AppsterCallback, AppsterGUIId, AppsterHTML } from './AppsterConstants.js'
 
 export default class AppsterController {
     constructor() {
@@ -90,10 +90,20 @@ export default class AppsterController {
         console.log("processCreateNewWork");
 
         // PROMPT FOR THE NAME OF THE NEW LIST
-        
+
         // MAKE A BRAND NEW LIST
         this.model.goList();
     }
+
+    // FIX TO ISSUE processCreateNewWork();
+    // processCreateNewWork = (event) => {
+    //     console.log("processCreateNewWork");
+
+    //     // PROMPT FOR THE NAME OF THE NEW LIST
+
+    //     // MAKE A BRAND NEW LIST
+    //     this.model.goList();
+    // }
 
     /**
      * This function responds to when the user clicks on a link
