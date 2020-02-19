@@ -86,14 +86,16 @@ export default class AppsterController {
      * This function is called when the user requests to create
      * new work.
      */
-    processCreateNewWork() {
+    processCreateNewWork = () => {
         console.log("processCreateNewWork");
 
         // PROMPT FOR THE NAME OF THE NEW LIST
+        this.model.showTextInput();
 
         // MAKE A BRAND NEW LIST
-        this.model.goList();
+        //this.model.goList();
     }
+
 
     // FIX TO ISSUE processCreateNewWork();
     // processCreateNewWork = (event) => {
@@ -104,6 +106,7 @@ export default class AppsterController {
     //     // MAKE A BRAND NEW LIST
     //     this.model.goList();
     // }
+
 
     /**
      * This function responds to when the user clicks on a link
