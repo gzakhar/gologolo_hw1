@@ -25,7 +25,11 @@ export const AppsterCallback = {
     APPSTER_PROCESS_GO_HOME: "processGoHome",
     APPSTER_PROCESS_DELETE_WORK: "processDeleteWork",
     APPSTER_PROCESS_CONFIRM_DELETE_WORK: "processConfirmDeleteWork",
-    APPSTER_PROCESS_CANCEL_DELETE_WORK: "processCancelDeleteWork"
+    APPSTER_PROCESS_CANCEL_DELETE_WORK: "processCancelDeleteWork",
+    // TEST !
+    APPSTER_PROCESS_ENTER_TEXTFIELD: "processSubmitNewWorkTextField",
+    APPSTER_PROCESS_CLOSE_TEXTFIELD: "processCloseNewWorkTextField",
+    APPSTER_PROCESS_CLOSE_ILLIGALFIELD: "processCloseIlligalWorkField"
 };
 
 /**
@@ -118,7 +122,7 @@ export const AppsterHTML = {
     DATA_ANIMATION: "data-animation",
     DIV: "div",
     HEADER: "header",
-    H1: "h1", H2: "h2", H3: "h3", H4: "h4", H5: "h5", H6: "h6",  
+    H1: "h1", H2: "h2", H3: "h3", H4: "h4", H5: "h5", H6: "h6",
     HIDDEN: "hidden",
     ID: "id",
     INPUT: "input",
@@ -142,7 +146,7 @@ export const AppsterHTML = {
   * use in place of icons. They are easy to use, are language independent,
   * and scale well.
   */
- export const AppsterSymbols = {
+export const AppsterSymbols = {
     DELETE: "&#128465;"     // TRASH SYMBOL
 };
 

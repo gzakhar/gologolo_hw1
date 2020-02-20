@@ -1,3 +1,5 @@
+import GoLogoLoLogo from "../gologolo/GoLogoLoLogo.js"; // Can this be in here?
+
 export default class AppsterModel {
     constructor() {
         // THE RECENT WORK LIST
@@ -128,7 +130,6 @@ export default class AppsterModel {
     /**
      * TEST !
      * This method creates new work when requested 
-     * 
      */
     showTextInput() {
         this.view.showTextDialog();
@@ -136,6 +137,39 @@ export default class AppsterModel {
 
     /**
      * TEST !
-     * 
+     * This method canceles TextField
      */
+    cancelTextField() {
+        this.view.hideTextField();
+    }
+    /**
+     * TEST !
+     * This method submits New Work Name
+     */
+    submitTextField(text) {
+        let recentWork = this.getRecentWork(text);
+
+        if ((text.length < 1) || (recentWork != null)) {
+
+            // Illegal name;
+            console.log("illigal name");
+            this.view.showIlligalTextField();
+
+        }
+        else {
+
+            console.log("legal name");
+            this.view.hideTextField();
+            let gologolo = new GoLogoLoLogo(text);
+            this.prependWork(gologolo);
+        }
+    }
+
+    /**
+     * TEST !
+     * This method exits out of Illigal Name Field
+     */
+    cancelIlligalWorkField() {
+        this.view.hideIlligalWorkField();
+    }
 }

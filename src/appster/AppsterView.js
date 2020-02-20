@@ -164,6 +164,7 @@ export default class AppsterView {
         return logoDiv;
     }
 
+    // NEW WORK BUTTON
     buildAppsterNewWorkDiv() {
         let newWorkDiv = this.buildElement(AppsterHTML.DIV, AppsterGUIId.APPSTER_HOME_NEW_WORK_CONTAINER);
         let newWorkButton = this.buildElement(AppsterHTML.BUTTON,
@@ -286,6 +287,7 @@ export default class AppsterView {
         return confirmModal;
     }
 
+    // TEXT FIELD WITH NAME OF WORK
     buildAppsterTextInputModal() {
         let textModal = this.buildElement(AppsterHTML.DIV,
             AppsterGUIId.APPSTER_TEXT_INPUT_MODAL,
@@ -525,13 +527,43 @@ export default class AppsterView {
     }
 
     /**
-     * TEST
-     * This method is for showing the textinput dialog.
+     * TEST !
+     * This method is for showing the textInput dialog.
      */
     showTextDialog() {
         // this.showElementWithId(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL, true);
 
         let dialog = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
         dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
+    }
+
+    /**
+     * TEST !
+     * This method is for hiding the textInput dialog.
+     */
+    hideTextField() {
+        let dialog = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
+        dialog.classList.remove(AppsterGUIClass.IS_VISIBLE);
+    }
+
+    /**
+     * TEST !
+     * This method shows Illigal Text Field
+     */
+    showIlligalTextField() {
+
+        this.hideTextField();
+        let dialog = document.getElementById(AppsterGUIId.APPSTER_CONFIRM_MODAL);
+        dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
+    }
+
+    /**
+     * TEST !
+     * This method hides the Illigal Text Field
+     */
+    hideIlligalWorkField() {
+
+        let dialog = document.getElementById(AppsterGUIId.APPSTER_CONFIRM_MODAL);
+        dialog.classList.remove(AppsterGUIClass.IS_VISIBLE);
     }
 }

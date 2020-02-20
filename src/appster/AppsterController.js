@@ -38,6 +38,14 @@ export default class AppsterController {
         // AND THE MODAL BUTTONS
         this.registerEventHandler(AppsterGUIId.DIALOG_YES_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_DELETE_WORK]);
         this.registerEventHandler(AppsterGUIId.DIALOG_NO_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_DELETE_WORK]);
+
+        /**
+         * @author georgy
+         */
+        // TEXT INPUT BUTTONS
+        this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_ENTER_TEXTFIELD]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CLOSE_TEXTFIELD]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_CONFIRM_MODAL_OK_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CLOSE_ILLIGALFIELD]);
     }
 
     /**
@@ -96,17 +104,33 @@ export default class AppsterController {
         //this.model.goList();
     }
 
+    /**
+     * TEST !
+     * This function submits the text input screen
+     * 
+     */
+    processSubmitNewWorkTextField = () => {
+        console.log("Submit new Work Name");
 
-    // FIX TO ISSUE processCreateNewWork();
-    // processCreateNewWork = (event) => {
-    //     console.log("processCreateNewWork");
+        this.model.submitTextField(document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_TEXTFIELD).value);
+    }
 
-    //     // PROMPT FOR THE NAME OF THE NEW LIST
+    /**
+     * TEST !
+     * This function cancels out of the text input screen
+     * 
+     */
+    processCloseNewWorkTextField = () => {
+        console.log("cancel the text field");
 
-    //     // MAKE A BRAND NEW LIST
-    //     this.model.goList();
-    // }
+        // CANCEL THE TEXT FIELD
+        this.model.cancelTextField();
+    }
 
+    processCloseIlligalWorkField = () => {
+
+        this.model.cancelIlligalWorkField();
+    }
 
     /**
      * This function responds to when the user clicks on a link
@@ -170,4 +194,6 @@ export default class AppsterController {
         // VERIFY VIA A DIALOG BOX
         window.todo.model.view.showDialog();
     }
+
+
 }
