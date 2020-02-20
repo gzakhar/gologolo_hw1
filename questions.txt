@@ -1,2 +1,2 @@
 1. What should be specific to Gologolo and what should be?
-2. Should there be inval
+2. Should there be seperate "illigal work messages" for the two different errors possible?
