@@ -186,14 +186,11 @@ export default class AppsterController {
      * list being edited.
      */
     processDeleteWork = () => {
+
         // VERIFY VIA A DIALOG BOX
         //window.todo.model.view.showDialog();
-
         this.model.deleteWork();
-
-
     }
-
 
     /**
      * This function responds to when the user clicks the Yes

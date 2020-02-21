@@ -10,6 +10,7 @@ export default class AppsterModel {
     }
 
     // setting the current work to be
+    // TEST !
     setWorkToEdit(workId) {
         this.currentWork = workId;
     }
@@ -182,6 +183,10 @@ export default class AppsterModel {
         this.view.hideIlligalWorkField();
     }
 
+    /**
+     * TEST !
+     * This method 
+     */
     deleteWork() {
 
         console.log("delete work in Model");
