@@ -9,6 +9,15 @@ export default class AppsterModel {
         this.currentWork = null;
     }
 
+    // setting the current work to be
+    setWorkToEdit(workId) {
+        this.currentWork = workId;
+    }
+    // current work being edited
+    getWorkToEdit() {
+        return this.currentWork;
+    }
+
     getRecentWork(workName) {
         for (let i = 0; i < this.recentWork.length; i++) {
             let testWork = this.recentWork[i];
@@ -171,5 +180,15 @@ export default class AppsterModel {
      */
     cancelIlligalWorkField() {
         this.view.hideIlligalWorkField();
+    }
+
+    deleteWork() {
+
+        console.log("delete work in Model");
+        this.view.showDialog();
+    }
+
+    cancelDeleteWork() {
+        this.view.hideDialog();
     }
 }

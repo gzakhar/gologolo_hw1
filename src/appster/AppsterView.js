@@ -514,7 +514,7 @@ export default class AppsterView {
      * This method is for hiding the yes/no dialog.
      */
     hideDialog() {
-        let dialog = document.getElementById(AppsterGUIId.MODAL_YES_NO_DIALOG);
+        let dialog = document.getElementById(AppsterGUIId.APPSTER_YES_NO_MODAL);
         dialog.classList.remove(AppsterGUIClass.IS_VISIBLE);
     }
 
@@ -522,7 +522,7 @@ export default class AppsterView {
      * This method is for showing the yes/no dialog.
      */
     showDialog() {
-        let dialog = document.getElementById(AppsterGUIId.MODAL_YES_NO_DIALOG);
+        let dialog = document.getElementById(AppsterGUIId.APPSTER_YES_NO_MODAL);
         dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
     }
 

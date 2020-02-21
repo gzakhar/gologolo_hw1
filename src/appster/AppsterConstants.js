@@ -29,7 +29,8 @@ export const AppsterCallback = {
     // TEST !
     APPSTER_PROCESS_ENTER_TEXTFIELD: "processSubmitNewWorkTextField",
     APPSTER_PROCESS_CLOSE_TEXTFIELD: "processCloseNewWorkTextField",
-    APPSTER_PROCESS_CLOSE_ILLIGALFIELD: "processCloseIlligalWorkField"
+    APPSTER_PROCESS_CLOSE_ILLIGALFIELD: "processCloseIlligalWorkField",
+
 };
 
 /**

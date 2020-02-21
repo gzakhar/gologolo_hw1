@@ -38,7 +38,8 @@ export default class AppsterController {
         // AND THE MODAL BUTTONS
         this.registerEventHandler(AppsterGUIId.DIALOG_YES_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_DELETE_WORK]);
         this.registerEventHandler(AppsterGUIId.DIALOG_NO_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_DELETE_WORK]);
-
+        this.registerEventHandler(AppsterGUIId.APPSTER_YES_NO_MODAL_NO_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_DELETE_WORK]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_YES_NO_MODAL_YES_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_DELETE_WORK]);
         /**
          * @author georgy
          */
@@ -142,9 +143,14 @@ export default class AppsterController {
     processEditWork = (event) => {
         console.log("processEditWork");
 
+        console.log(event);
         // GET THE WORK THAT THE USER WANTS TO LOAD
         let clickedElement = event.target;
         let workName = clickedElement.workId;
+
+        // how to get the instance of the work that is being edited
+        this.model.setWorkToEdit(workName);
+
         console.log(workName + " clicked");
 
         // START EDITING THE SELECTED WORK
@@ -156,8 +162,9 @@ export default class AppsterController {
      * button in the popup dialog after having requested to delete
      * the loaded work.
      */
-    processCancelDeleteWork() {
+    processCancelDeleteWork = () => {
         // JUST HIDE THE DIALOG
+        this.model.cancelDeleteWork();
 
     }
 
@@ -172,28 +179,40 @@ export default class AppsterController {
         window.todo.model.updateListName(listBeingEdited, newName);
     }
 
-    /**
-     * This function responds to when the user clicks the Yes
-     * button in the popup dialog after having requested to delete
-     * the loaded work.
-     */
-    processConfirmDeleteWork() {
-        // DELETE THE WORK
-        this.model.removeWork(this.model.getWorkToEdit());
-
-        // GO BACK TO THE HOME SCREEN
-        this.model.goHome();
-    }
 
     /**
      * This function responds to when the user clicks the trash
      * button, i.e. the delete button, in order to delete the
      * list being edited.
      */
-    processDeleteWork() {
+    processDeleteWork = () => {
         // VERIFY VIA A DIALOG BOX
-        window.todo.model.view.showDialog();
+        //window.todo.model.view.showDialog();
+
+        this.model.deleteWork();
+
+
     }
+
+
+    /**
+     * This function responds to when the user clicks the Yes
+     * button in the popup dialog after having requested to delete
+     * the loaded work.
+     */
+    processConfirmDeleteWork = () => {
+
+
+        console.log(this.model.getRecentWork(this.model.getWorkToEdit()));
+        // DELETE THE WORK
+        this.model.removeWork(this.model.getRecentWork(this.model.getWorkToEdit()));
+
+        this.model.cancelDeleteWork();
+        // GO BACK TO THE HOME SCREEN
+        this.model.goHome();
+    }
+
+
 
 
 }
