@@ -1,5 +1,5 @@
 import AppWork from '../appster/AppWork.js'
-import {GoLogoLoDefaults} from './GoLogoLoConstants.js'
+import { GoLogoLoDefaults } from './GoLogoLoConstants.js'
 
 export default class GoLogoLoLogo extends AppWork {
     constructor(name) {
@@ -10,8 +10,11 @@ export default class GoLogoLoLogo extends AppWork {
         this.backgroundColor = GoLogoLoDefaults.GOLOGOLO_DEFAULT_BORDER_COLOR;
         this.borderColor = GoLogoLoDefaults.GOLOGOLO_DEFAULT_BORDER_RADIUS;
         this.borderThickness = GoLogoLoDefaults.GOLOGOLO_DEFAULT_BORDER_THICKNESS;
+        // this is for the border.
+        this.borderType = GoLogoLoDefaults.GOLOGOLO_DEFAULT_BORDER_TYPE;
         this.padding = GoLogoLoDefaults.GOLOGOLO_DEFAULT_PADDING;
         this.margin = GoLogoLoDefaults.GOLOGOLO_DEFAULT_MARGIN;
+
     }
 
     setText(initText) {
@@ -68,6 +71,16 @@ export default class GoLogoLoLogo extends AppWork {
 
     getBorderThickness() {
         return this.borderThickness;
+    }
+
+    // Border Type set.
+    setBorderType(initBorderType) {
+        this.borderType = initBorderType;
+    }
+
+    // Border Type get.
+    getBorderType() {
+        return this.borderType;
     }
 
     setPadding(initPadding) {

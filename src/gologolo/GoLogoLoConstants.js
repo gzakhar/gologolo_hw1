@@ -42,5 +42,17 @@ export const GoLogoLoText = {
 }
 
 export const GoLogoLoCallback = {
-    GOLOGOLO_PROCESS_EDIT_TEXT_TEXT: "processEditText"
+    GOLOGOLO_PROCESS_EDIT_TEXT_TEXT: "processEditText",
+    GOLOGOLO_PROCESS_EDIT_TEXT_SIZE: "processEditTextSize",
+    GOLOGOLO_PROCESS_EDIT_TEXT_COLOR: "processEditTextColor",
+    GOLOGOLO_PROCESS_EDIT_BACKGROUND_COLOR: "processEditBackgroundColor",
+    GOLOGOLO_PROCESS_EDIT_BORDER_COLOR: "processEditBorderColor",
+    GOLOGOLO_PROCESS_EDIT_BORDER_RADIUS: "processEditBorderRadius",
+    GOLOGOLO_PROCESS_EDIT_BORDER_THICKNESS: "processEditBorderThickness",
+    GOLOGOLO_PROCESS_EDIT_PADDING: "processEditPadding",
+    GOLOGOLO_PROCESS_EDIT_MARGIN: "processEditMargin"
+}
+
+export const GoLogoLoHTML = {
+    INPUT: "input"
 }

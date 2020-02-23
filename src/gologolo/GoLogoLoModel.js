@@ -1,5 +1,7 @@
 import AppsterModel from '../appster/AppsterModel.js'
 import GoLogoLoLogo from './GoLogoLoLogo.js'
+import { AppsterGUIId } from '../appster/AppsterConstants.js';
+import { GoLogoLoGUIClass, GoLogoLoGUIId } from './GoLogoLoConstants.js';
 
 export default class GoLogoLoModel extends AppsterModel {
     constructor() {
@@ -45,6 +47,57 @@ export default class GoLogoLoModel extends AppsterModel {
     }
 
     updateText() {
-        this.view.
+        this.view.show(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
+    }
+
+    // This function edits the Text Size.
+    updateTextSize(size) {
+        //this would recet the current work to the current work of the parent.
+        //this.currentWork = super.getWorkToEdit();
+        this.currentWork.setFontSize(size);
+        this.view.loadWorkStyle(this.currentWork);
+    }
+
+    // This function edits the Text Color.
+    updateTextColor(color) {
+        this.currentWork.setTextColor(color);
+        this.view.loadWorkStyle(this.currentWork);
+    }
+
+    // This function edits the Background Color.
+    updateBackgroundColor(color) {
+        this.currentWork.setBackgroundColor(color);
+        this.view.loadWorkStyle(this.currentWork);
+    }
+
+    // This function edits the Border Color.
+    updateBorderColor(color) {
+        this.currentWork.setBorderColor(color);
+        this.view.loadWorkStyle(this.currentWork);
+    }
+
+    // This function edits the Border Radius.
+    updateBorderRadius(radius) {
+        this.currentWork.setBorderRadius(radius);
+        this.view.loadWorkStyle(this.currentWork);
+    }
+
+    // This function edits the Thickness.
+    updateBorderThickness(thickness) {
+        this.currentWork.setBorderThickness(thickness);
+        this.view.loadWorkStyle(this.currentWork);
+    }
+
+    // This function edits the Padding.
+    updatePadding(padding) {
+        this.currentWork.setPadding(padding);
+        this.view.loadWorkStyle(this.currentWork);
+    }
+
+    // This function edits the Margin.
+    updateMargin(margin) {
+        console.log("updating margin");
+        this.currentWork.setMargin(margin);
+        this.view.loadWorkStyle(this.currentWork);
     }
 }

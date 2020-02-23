@@ -149,7 +149,7 @@ export default class AppsterController {
         let workName = clickedElement.workId;
 
         // how to get the instance of the work that is being edited
-        this.model.setWorkToEdit(workName);
+        //this.model.setWorkToEdit(workName);
 
         console.log(workName + " clicked");
 
@@ -200,9 +200,9 @@ export default class AppsterController {
     processConfirmDeleteWork = () => {
 
 
-        console.log(this.model.getRecentWork(this.model.getWorkToEdit()));
+        console.log(this.model.getWorkToEdit());
         // DELETE THE WORK
-        this.model.removeWork(this.model.getRecentWork(this.model.getWorkToEdit()));
+        this.model.removeWork(this.model.getWorkToEdit());
 
         this.model.cancelDeleteWork();
         // GO BACK TO THE HOME SCREEN

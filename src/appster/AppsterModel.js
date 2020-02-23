@@ -9,11 +9,11 @@ export default class AppsterModel {
         this.currentWork = null;
     }
 
-    // setting the current work to be
-    // TEST !
-    setWorkToEdit(workId) {
-        this.currentWork = workId;
-    }
+    // // setting the current work to be
+    // // TEST !
+    // setWorkToEdit(workId) {
+    //     this.currentWork = workId;
+    // }
     // current work being edited
     getWorkToEdit() {
         return this.currentWork;
@@ -50,6 +50,10 @@ export default class AppsterModel {
 
             // CHANGE THE SCREEN
             this.view.goToEditScreen();
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Updates the current work
+            this.currentWork = work;
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
     }
 

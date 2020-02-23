@@ -1,5 +1,5 @@
 import { GoLogoLoGUIClass, GoLogoLoGUIId, GoLogoLoText } from './GoLogoLoConstants.js'
-import { AppsterHTML, AppsterSymbols } from '../appster/AppsterConstants.js'
+import { AppsterHTML, AppsterSymbols, AppsterGUIClass } from '../appster/AppsterConstants.js'
 import AppsterView from '../appster/AppsterView.js'
 
 export default class GoLogoLoView extends AppsterView {
@@ -16,14 +16,16 @@ export default class GoLogoLoView extends AppsterView {
         // FIRST MAKE THE TOOLBAR
         let toolbar = this.buildElement(AppsterHTML.DIV, GoLogoLoGUIId.GOLOGOLO_TOOLBAR);
         let editTextButton = this.buildElement(AppsterHTML.BUTTON, GoLogoLoGUIId.GOLOGOLO_EDIT_TEXT_BUTTON, [], [], GoLogoLoText.GOLOGOLO_EDIT_TEXT_TEXT);
-        editTextButton.innerHTML = AppsterSymbols.EDIT;
         let fontSizeSlider = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_FONT_SIZE_SLIDER, [], rangeAttributes);
         let textColorPicker = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_TEXT_COLOR_PICKER, [], colorPickerAttributes);
         let backgroundColorPicker = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_BACKGROUND_COLOR_PICKER, [], colorPickerAttributes);
         let borderColorPicker = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_BORDER_COLOR_PICKER, [], colorPickerAttributes);
         let borderRadiusSlider = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_BORDER_RADIUS_SLIDER, [], rangeAttributes);
-        let borderThicknessSlider = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_BORDER_RADIUS_SLIDER, [], rangeAttributes);
+        // this was building an element with GoLogoLoGUIId.GOLOGOLO_BORDER_RADIUS_SLIDER as the id value.
+        let borderThicknessSlider = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_BORDER_THICKNESS_SLIDER, [], rangeAttributes);
+
         let paddingSlider = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER, [], rangeAttributes);
+
         let marginSlider = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER, [], rangeAttributes);
         let textDiv = this.buildElement(AppsterHTML.DIV, GoLogoLoGUIId.GOLOGOLO_TEXT);
         let promptClass = [GoLogoLoGUIClass.GOLOGOLO_CONTROL_PROMPT];
@@ -71,12 +73,13 @@ export default class GoLogoLoView extends AppsterView {
         borderColorPicker.value = work.getBorderColor();
         let borderRadiusSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_RADIUS_SLIDER);
         borderRadiusSlider.value = work.getBorderRadius();
-        let borderThicknessSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_RADIUS_SLIDER);
+        let borderThicknessSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_THICKNESS_SLIDER);
         borderThicknessSlider.value = work.getBorderThickness();
         let paddingSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER);
         paddingSlider.value = work.getPadding();
         let marginSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER);
         marginSlider.value = work.getMargin();
+
         this.loadWorkStyle(work);
     }
 
@@ -85,8 +88,12 @@ export default class GoLogoLoView extends AppsterView {
         textDiv.style.color = work.getTextColor();
         textDiv.style.backgroundColor = work.getBackgroundColor();
         textDiv.style.borderColor = work.getBorderColor();
-        textDiv.style.borderRadius = work.getBorderRadius();
-        textDiv.style.borderThickness = work.getBorderThickness();
+        textDiv.style.borderRadius = work.getBorderRadius() + 'px';
+        textDiv.style.borderWidth = work.getBorderThickness() + 'px';
+        textDiv.style.padding = work.getPadding() + 'px';
+        textDiv.style.fontSize = work.getFontSize() + 'px';
+        textDiv.style.margin = work.getMargin() + 'px';
+        textDiv.style.borderStyle = "solid";
     }
 
     addListItem(initText) {
@@ -104,5 +111,18 @@ export default class GoLogoLoView extends AppsterView {
     }
     //------------------------------------------------------------------------------------------------------------
 
+    // this functino will make somthing with an id visible.
+    show(id) {
+        console.log("this is the id of the element " + id);
+        let dialog = document.getElementById(id);
+        console.log("This is the dialog of " + dialog);
+        dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
+    }
+
+    // setFontSize(size) {
+    //     // console.log("changing size");
+    //     // let text = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT);
+    //     // text.style.setFontSize(size);
+    // }
 
 }
