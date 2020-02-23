@@ -1,3 +1,13 @@
-1. What should be specific to Gologolo and what should be?
+1. What should be specific to Gologolo and what should be? 
+    Nothing gologolo in appster.
+
 2. Should there be seperate "illigal work messages" for the two different errors possible?
+    Create an Id for paragraph in the confirmation feild and access it programatically.
+
 3. Can the showDialog and hideDialog functions in View be used for different modlas 
+    create function for each button that would be calling the hide dialog.
+
+4. Can you call a super.method from a this.method
+    yes! use super.method; in this.method
+
+5. No matter how much width the border has its not going to be visible untill you set the boarder.style to be solid. in the css.
