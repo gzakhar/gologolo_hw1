@@ -1,6 +1,7 @@
 import AppsterController from '../appster/AppsterController.js'
 import { GoLogoLoGUIId, GoLogoLoText, GoLogoLoCallback, GoLogoLoHTML } from './GoLogoLoConstants.js';
-import { AppsterHTML } from '../appster/AppsterConstants.js';
+import { AppsterGUIId, AppsterHTML } from '../appster/AppsterConstants.js';
+
 
 export default class GoLogoLoController
     extends AppsterController {
@@ -11,7 +12,7 @@ export default class GoLogoLoController
     registerAppsterEventHandlers() {
 
         // Edit Text Button.
-        super.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_EDIT_TEXT_BUTTON, AppsterHTML.CLICK, this[GoLogoLoCallback.GOLOGOLO_PROCESS_EDIT_TEXT_TEXT]);
+        super.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_EDIT_TEXT_BUTTON, AppsterHTML.CLICK, this[GoLogoLoCallback.GOLOGOLO_PROCESS_EDIT_TEXT]);
         // Edit Text Size.
         super.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_FONT_SIZE_SLIDER, GoLogoLoHTML.INPUT, this[GoLogoLoCallback.GOLOGOLO_PROCESS_EDIT_TEXT_SIZE]);
         // Edit Text Color.
@@ -28,13 +29,17 @@ export default class GoLogoLoController
         super.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER, GoLogoLoHTML.INPUT, this[GoLogoLoCallback.GOLOGOLO_PROCESS_EDIT_PADDING]);
         // Edit Margin
         super.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER, GoLogoLoHTML.INPUT, this[GoLogoLoCallback.GOLOGOLO_PROCESS_EDIT_MARGIN]);
+        // Confirm New Text
+        super.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_ENTER_BUTTON, AppsterHTML.CLICK, this[GoLogoLoCallback.GOLOGOLO_PROCESS_CONFIRM_EDIT_TEXT]);
+        // Cancel New Text
+        super.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_CANCEL_BUTTON, AppsterHTML.CLICK, this[GoLogoLoCallback.GOLOGOLO_PROCESS_CANCEL_EDIT_TEXT]);
 
         // Calls super method that registeres appster specific events.
         super.registerAppsterEventHandlers();
     }
 
 
-
+    // This callBack is for when the client uses the edit text button.
     processEditText = () => {
         this.model.updateText();
     }
@@ -76,9 +81,18 @@ export default class GoLogoLoController
 
     // This callBack is for when the client uses the slider for Margin.
     processEditMargin = () => {
-        console.log("margin");
         this.model.updateMargin(document.getElementById(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER).value);
     }
 
+    // This callBack is for when the client confirms the Edit Text button.
+    processConfirmEditText = () => {
+        console.log("in controller");
+        this.model.confirmUpdateText();
+    }
+
+
+    processCancelEditText = () => {
+        this.model.cancelUpdateText();
+    }
 
 }

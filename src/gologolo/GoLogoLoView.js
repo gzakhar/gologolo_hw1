@@ -1,5 +1,5 @@
 import { GoLogoLoGUIClass, GoLogoLoGUIId, GoLogoLoText } from './GoLogoLoConstants.js'
-import { AppsterHTML, AppsterSymbols, AppsterGUIClass } from '../appster/AppsterConstants.js'
+import { AppsterHTML, AppsterSymbols, AppsterGUIClass, AppsterText } from '../appster/AppsterConstants.js'
 import AppsterView from '../appster/AppsterView.js'
 
 export default class GoLogoLoView extends AppsterView {
@@ -25,6 +25,9 @@ export default class GoLogoLoView extends AppsterView {
         let borderThicknessSlider = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_BORDER_THICKNESS_SLIDER, [], rangeAttributes);
 
         let paddingSlider = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER, [], rangeAttributes);
+
+        let gologoloTextInputModal = this.buildGoLogoLoTextInputModal();
+
 
         let marginSlider = this.buildElement(AppsterHTML.INPUT, GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER, [], rangeAttributes);
         let textDiv = this.buildElement(AppsterHTML.DIV, GoLogoLoGUIId.GOLOGOLO_TEXT);
@@ -57,6 +60,7 @@ export default class GoLogoLoView extends AppsterView {
 
         workspace.appendChild(toolbar);
         workspace.appendChild(textDiv);
+        workspace.appendChild(gologoloTextInputModal);
         return workspace;
     }
 
@@ -85,6 +89,7 @@ export default class GoLogoLoView extends AppsterView {
 
     loadWorkStyle(work) {
         let textDiv = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT);
+        textDiv.innerHTML = work.getText();
         textDiv.style.color = work.getTextColor();
         textDiv.style.backgroundColor = work.getBackgroundColor();
         textDiv.style.borderColor = work.getBorderColor();
@@ -105,6 +110,56 @@ export default class GoLogoLoView extends AppsterView {
         textList.appendChild(newListItem);
     }
 
+    // Text Field with Text in Work
+    buildGoLogoLoTextInputModal() {
+        let textModal = this.buildElement(AppsterHTML.DIV,
+            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL,
+            [AppsterGUIClass.APPSTER_MODAL],
+            [],
+            null,
+            AppsterGUIClass.MODAL_ANIMATION_LEFT);
+        let textFrame = this.buildElement(AppsterHTML.DIV,
+            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_FRAME,
+            [AppsterGUIClass.APPSTER_MODAL_FRAME]);
+        let header = this.buildElement(AppsterHTML.HEADER,
+            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_HEADER,
+            [AppsterGUIClass.APPSTER_MODAL_HEADER]);
+        let section = this.buildElement(AppsterHTML.SECTION,
+            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_SECTION,
+            [AppsterGUIClass.APPSTER_MODAL_SECTION]);
+        let p = this.buildElement(AppsterHTML.P);
+        let strong = this.buildElement(AppsterHTML.STRONG,
+            "",
+            [],
+            [],
+            GoLogoLoText.GOLOGOLO_NEW_WORK_TEXT);
+        let textFieldAttributes = [];
+        textFieldAttributes[AppsterHTML.TYPE] = AppsterHTML.TEXT;
+        let textField = this.buildElement(AppsterHTML.INPUT,
+            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_TEXTFIELD,
+            [AppsterGUIClass.APPSTER_MODAL_TEXTFIELD],
+            textFieldAttributes);
+        let enterButton = this.buildElement(AppsterHTML.BUTTON,
+            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_ENTER_BUTTON,
+            [AppsterGUIClass.APPSTER_MODAL_BUTTON],
+            [],
+            AppsterText.APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON_TEXT);
+        let cancelButton = this.buildElement(AppsterHTML.BUTTON,
+            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_CANCEL_BUTTON,
+            [AppsterGUIClass.APPSTER_MODAL_BUTTON],
+            [],
+            AppsterText.APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON_TEXT);
+        p.appendChild(strong);
+        section.appendChild(p);
+        textFrame.appendChild(header);
+        textFrame.appendChild(section);
+        section.appendChild(textField);
+        section.appendChild(enterButton);
+        section.appendChild(cancelButton);
+        textModal.appendChild(textFrame);
+        return textModal;
+    }
+
     appendLetter(listItemId, letterToAppend) {
         let textList = document.getElementById(listItemId);
         textList.innerHTML += textList.innerHTML + letterToAppend;
@@ -113,16 +168,14 @@ export default class GoLogoLoView extends AppsterView {
 
     // this functino will make somthing with an id visible.
     show(id) {
-        console.log("this is the id of the element " + id);
         let dialog = document.getElementById(id);
-        console.log("This is the dialog of " + dialog);
         dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
     }
 
-    // setFontSize(size) {
-    //     // console.log("changing size");
-    //     // let text = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT);
-    //     // text.style.setFontSize(size);
-    // }
+    // this function hides element with some id.
+    hide(id) {
+        let dialog = document.getElementById(id);
+        dialog.classList.remove(AppsterGUIClass.IS_VISIBLE);
+    }
 
 }

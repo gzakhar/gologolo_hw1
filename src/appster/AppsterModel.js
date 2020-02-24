@@ -1,4 +1,5 @@
 import GoLogoLoLogo from "../gologolo/GoLogoLoLogo.js"; // Can this be in here?
+import { AppsterText } from "./AppsterConstants.js";
 
 export default class AppsterModel {
     constructor() {
@@ -42,18 +43,18 @@ export default class AppsterModel {
 
         if (work) {
             // SET IT AS THE WORK WE ARE EDITING
-            this.workToEdit = work;
-            this.moveWorkToTop(this.workToEdit);
+            this.currentWork = work;
+            this.moveWorkToTop(this.currentWork);
 
             // LOAD DATA INTO THE UI
-            this.view.loadWork(this.workToEdit);
+            this.view.loadWork(this.currentWork);
 
             // CHANGE THE SCREEN
             this.view.goToEditScreen();
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // Updates the current work
-            this.currentWork = work;
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // // Updates the current work
+            // this.currentWork = work;
+            // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
     }
 
@@ -163,17 +164,23 @@ export default class AppsterModel {
     submitTextField(text) {
         let recentWork = this.getRecentWork(text);
 
-        if ((text.length < 1) || (recentWork != null)) {
+        if (recentWork != null) {
 
-            // Illegal name;
-            console.log("illigal name");
-            this.view.showIlligalTextField();
+            // Illegal name because name already exists.
+            console.log("illigal name already exists");
+            this.view.showIlligalTextField("Duplicate Name");
+        }
+        else if (text.length < 1) {
 
+            // Illegal name because not enough letters.
+            console.log("illigal name needs more than on letter");
+            this.view.showIlligalTextField("Name needs to be non-empty");
         }
         else {
 
             console.log("legal name");
             this.view.hideTextField();
+            // Here you should create a new Work.
             let gologolo = new GoLogoLoLogo(text);
             this.prependWork(gologolo);
         }

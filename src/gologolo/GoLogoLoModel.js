@@ -47,13 +47,11 @@ export default class GoLogoLoModel extends AppsterModel {
     }
 
     updateText() {
-        this.view.show(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
+        this.view.show(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL);
     }
 
     // This function edits the Text Size.
     updateTextSize(size) {
-        //this would recet the current work to the current work of the parent.
-        //this.currentWork = super.getWorkToEdit();
         this.currentWork.setFontSize(size);
         this.view.loadWorkStyle(this.currentWork);
     }
@@ -96,8 +94,26 @@ export default class GoLogoLoModel extends AppsterModel {
 
     // This function edits the Margin.
     updateMargin(margin) {
-        console.log("updating margin");
         this.currentWork.setMargin(margin);
         this.view.loadWorkStyle(this.currentWork);
+    }
+
+    // This function is to update the text in the work.
+    confirmUpdateText() {
+
+        // Hide text input.
+        this.view.hide(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL);
+
+        // Set text of the work to new text.
+        this.currentWork.setText(document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_TEXTFIELD).value);
+
+        // Load workStyle into the view.
+        this.view.loadWorkStyle(this.currentWork);
+    }
+    // This function is to cancel the update of the text in work.
+    cancelUpdateText() {
+
+        // Hide text input.
+        this.view.hide(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL);
     }
 }

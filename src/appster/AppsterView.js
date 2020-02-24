@@ -262,6 +262,7 @@ export default class AppsterView {
             AppsterGUIId.APPSTER_CONFIRM_MODAL_SECTION,
             [AppsterGUIClass.APPSTER_MODAL_SECTION]);
         let p = this.buildElement(AppsterHTML.P);
+        // A Id was added to this strong so that you are able to access what goes into the text.
         let strong = this.buildElement(AppsterHTML.STRONG,
             "",
             [],
@@ -272,8 +273,9 @@ export default class AppsterView {
             [AppsterGUIClass.APPSTER_MODAL_BUTTON],
             [],
             AppsterText.APPSTER_CONFIRM_MODAL_OK_BUTTON_TEXT);
+        // Footer of "Illigal name" modal.
         let footer = this.buildElement(AppsterHTML.FOOTER,
-            "",
+            AppsterGUIId.APPSTER_CONFIRM_MODAL_TEXT,
             [AppsterGUIClass.APPSTER_MODAL_FOOTER],
             [],
             AppsterText.APPSTER_CONFIRM_MODAL_FOOTER_TEXT);
@@ -550,11 +552,17 @@ export default class AppsterView {
      * TEST !
      * This method shows Illigal Text Field
      */
-    showIlligalTextField() {
-
+    showIlligalTextField(warning) {
+        // Hide text field
         this.hideTextField();
+
+        // Show warning
         let dialog = document.getElementById(AppsterGUIId.APPSTER_CONFIRM_MODAL);
         dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
+
+        // Add text to the 
+        let text = document.getElementById(AppsterGUIId.APPSTER_CONFIRM_MODAL_TEXT);
+        text.innerHTML = warning;
     }
 
     /**
@@ -565,5 +573,10 @@ export default class AppsterView {
 
         let dialog = document.getElementById(AppsterGUIId.APPSTER_CONFIRM_MODAL);
         dialog.classList.remove(AppsterGUIClass.IS_VISIBLE);
+    }
+
+    // This function reassigns Ids.
+    reassignId(oldId, newId) {
+        document.getElementById(oldId).id = newId;
     }
 }
