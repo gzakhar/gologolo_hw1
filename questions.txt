@@ -12,8 +12,16 @@
 
 5. No matter how much width the border has its not going to be visible untill you set the boarder.style to be solid. in the css.
 
-6. How to create a New Work without calling anything in GoLogoLo.model
+
 
 7. appster.model -164:
     - How create constrants which could be used instead of txt?
     - Is it right that the text is coming from the model?
+
+
+
+
+
+8. Put a limit on how small the text can be.
+
+6. How to create a New Work without calling anything in GoLogoLo.model

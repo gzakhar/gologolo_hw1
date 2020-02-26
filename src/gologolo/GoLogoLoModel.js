@@ -46,6 +46,36 @@ export default class GoLogoLoModel extends AppsterModel {
         return appWork;
     }
 
+    /**
+ * TEST !
+ * This method submits New Work Name
+ */
+    submitTextField(text) {
+        let recentWork = this.getRecentWork(text);
+
+        if (recentWork != null) {
+
+            // Illegal name because name already exists.
+            console.log("illigal name already exists");
+            this.view.showIlligalTextField("Duplicate Name");
+        }
+        else if (text.length < 1) {
+
+            // Illegal name because not enough letters.
+            console.log("illigal name needs more than on letter");
+            this.view.showIlligalTextField("Name needs to be non-empty");
+        }
+        else {
+
+            console.log("legal name");
+            this.view.hideTextField();
+            // Here you should create a new Work.
+            let gologolo = new GoLogoLoLogo(text);
+            this.prependWork(gologolo);
+            super.editWork(text);
+        }
+    }
+
     updateText() {
         this.view.show(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL);
     }
